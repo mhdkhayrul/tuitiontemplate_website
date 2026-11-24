@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- SEO: edit these two lines with the centre's real name and description -->
+<title>Lumen | Tuition Centre</title>
+<meta name="description" content="Tuition for primary and secondary students: small classes, caring tutors, UASA and SPM preparation. Book a free trial class on WhatsApp.">
+<link rel="icon" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap">
+<style>
+/* Layout: rounded navy/white bands inset on a white page; rem scales with viewport width. Single deliberate light look. */
+:root{
+  color-scheme: light;
+  --background:#ffffff; --foreground:#0a0a0a;
+  --brand:#2563c9; --brand-deep:#0f2f63; --brand-light:#5790e6;
+  --accent-teal:#0b6e97; --accent-warm:#f2b632; --whatsapp:#25d366;
+  --surface:#f4f4f4; --surface-card:#ffffff;
+  --ink:#0a0a0a; --ink-soft:#717784; --ghost:#d7dae1; --hairline:#e6e8ec; --on-brand:#ffffff;
+  --radius-card:1.5rem; --radius-card-lg:2rem; --radius-pill:62.5rem;
+  --font:"Onest", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ease-expo:cubic-bezier(0.16,1,0.3,1);
+  --ease-quart:cubic-bezier(0.25,1,0.5,1);
+  --ease-io-cubic:cubic-bezier(0.65,0,0.35,1);
+}
+html{font-size:16px}
+@media (max-width:1920px){html{font-size:0.833333vw}}
+@media (max-width:1440px){html{font-size:1.111111vw}}
+@media (max-width:1024px){html{font-size:1.5625vw}}
+@media (max-width:640px){html{font-size:4.444444vw}}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+html.locked{position:relative;overflow:hidden;height:100%}
+
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+img{display:block;max-width:100%}
+body{min-height:100vh;background:var(--background);color:var(--foreground);font-family:var(--font);font-size:1rem;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{cursor:pointer;font:inherit;color:inherit;background:none;border:0;padding:0}
+a{color:inherit;text-decoration:none}
+ul{list-style:none;padding:0}
+:focus-visible{outline:2px solid var(--brand-light);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.medium{font-weight:500}
+h1,h2,h3{font-weight:500;text-wrap:balance}
+
+main{width:100%;overflow-x:clip;padding:0.5rem}
+@media (min-width:640px){main{padding:0.75rem}}
+
+/* ---------- Text reveal primitives ---------- */
+.clip{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.14em;margin-bottom:-0.14em}
+.clip>span{display:inline-block;transform:translateY(115%);opacity:0;
+  transition:transform var(--d,950ms) var(--e,var(--ease-expo)) var(--dl,0ms), opacity var(--d,950ms) var(--e,var(--ease-expo)) var(--dl,0ms)}
+.is-in .clip>span{transform:none;opacity:1}
+.stack .clip{display:block;width:max-content;max-width:100%}
+.fadewords .fw{display:inline-block;transform:translateY(18px);opacity:0;
+  transition:transform 700ms var(--ease-quart) var(--dl,0ms),opacity 700ms var(--ease-quart) var(--dl,0ms)}
+.fadewords.is-in .fw{transform:none;opacity:1}
+
+/* ---------- Image placeholders: ruled exercise-book paper ---------- */
+.ph{position:relative;width:100%;height:100%;overflow:hidden;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(1.6rem - 1px), rgba(255,255,255,.09) calc(1.6rem - 1px), rgba(255,255,255,.09) 1.6rem),
+    linear-gradient(90deg, transparent 18%, rgba(242,182,50,.35) 18%, rgba(242,182,50,.35) calc(18% + 1px), transparent calc(18% + 1px)),
+    linear-gradient(135deg, var(--ph-a,#2563c9), var(--ph-b,#0f2f63));
+  display:flex;align-items:flex-end;justify-content:flex-start}
+.ph.v2{--ph-a:#0b6e97;--ph-b:#0f2f63}
+.ph.v3{--ph-a:#5790e6;--ph-b:#2563c9}
+.ph span{position:relative;margin:0 0 .6rem 22%;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:500}
+.ph.big span{font-size:.75rem;margin-bottom:auto;margin-top:1rem}
+.media{width:100%;height:100%;object-fit:cover}
+
+/* ---------- Shared components ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--ink-soft)}
+.eyebrow::before{content:"";width:.375rem;height:.375rem;border-radius:var(--radius-pill);background:var(--brand)}
+.eyebrow.light{color:rgba(255,255,255,.7)}
+.eyebrow.light::before{background:var(--brand-light)}
+
+.pill{display:inline-flex;align-items:center;gap:.5rem;border-radius:var(--radius-pill);padding:.875rem 1.75rem;font-size:.875rem;font-weight:500;text-transform:uppercase;letter-spacing:.025em;transition:background-color .25s,color .25s,border-color .25s;white-space:nowrap}
+.pill svg{width:1rem;height:1rem;flex:none}
+.pill.light{background:#fff;color:var(--brand-deep)}
+.pill.light:hover{background:var(--brand-light);color:#fff}
+.pill.solid{background:var(--ink);color:#fff}
+.pill.solid:hover{background:var(--brand-deep)}
+.pill.outline{border:1px solid currentColor;color:var(--ink)}
+.pill.outline:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pill.wa{background:var(--whatsapp);color:var(--ink)}
+.pill.wa:hover{background:#1fbd5a}
+
+.arrow-btn{display:grid;place-items:center;width:3rem;height:3rem;border-radius:var(--radius-pill);border:1px solid var(--hairline);color:var(--ink);transition:background-color .25s,border-color .25s}
+@media (min-width:640px){.arrow-btn{width:3.5rem;height:3.5rem}}
+.arrow-btn:hover{border-color:var(--ink)}
+.arrow-btn.solid{background:var(--ink);border-color:var(--ink);color:#fff}
+.arrow-btn.solid:hover{background:var(--brand-deep);border-color:var(--brand-deep)}
+.arrow-btn svg{width:1.25rem;height:1.25rem}
+.arrow-btn.prev .flip{transform:scaleX(-1)}
+
+.dots{display:flex;gap:.5rem;align-items:center}
+.dots button{padding:.375rem;display:block}
+.dots i{display:block;height:.375rem;width:.375rem;border-radius:var(--radius-pill);background:var(--ghost);transition:width .35s var(--ease-expo),background-color .35s}
+.dots button[aria-current="true"] i{width:1.25rem;background:var(--ink)}
+.dots.light i{background:rgba(255,255,255,.4)}
+.dots.light button[aria-current="true"] i{background:#fff}
+
+.mark{width:1.25rem;height:1.25rem;flex:none}
+.brand{display:inline-flex;align-items:center;gap:.5rem;font-size:1rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em}
+
+.glass{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.1);border-radius:var(--radius-card);padding:.75rem;box-shadow:0 10px 30px rgba(15,47,99,.2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--brand-deep);color:#fff;border-radius:var(--radius-card-lg);height:calc(100svh - 1rem);min-height:36rem;display:flex;flex-direction:column}
+@media (min-width:640px){.hero{height:calc(100svh - 1.5rem)}}
+.hero-bg{position:absolute;inset:0;z-index:-10}
+.hero-plate{position:absolute;left:0;right:0;top:-16%;height:132%;width:100%;will-change:transform}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,47,99,.65),rgba(15,47,99,.35),rgba(15,47,99,.75))}
+
+.site-header{display:flex;align-items:center;padding:1.5rem 1.5rem 0;font-size:.75rem;color:#fff}
+@media (min-width:640px){.site-header{padding:2rem 2.5rem 0}}
+.hnav{display:none;flex:1;gap:2rem}
+.hnav a{opacity:.9;transition:opacity .2s}
+.hnav a:hover{opacity:1}
+.hcenter{flex:1;display:flex}
+.hright{flex:1;display:flex;justify-content:flex-end;align-items:center;gap:1rem}
+@media (min-width:640px){.hright{gap:1.25rem}}
+@media (min-width:1024px){.hnav{display:flex}.hcenter{justify-content:center}}
+.htext{display:none;text-transform:uppercase;letter-spacing:.05em;font-size:.75rem}
+.htext:hover{text-decoration:underline;text-underline-offset:4px}
+@media (min-width:640px){.htext{display:inline}}
+.burger{width:2.5rem;height:2.5rem;border-radius:var(--radius-pill);background:rgba(255,255,255,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;place-content:center;gap:5px;transition:background-color .2s}
+.burger:hover{background:rgba(255,255,255,.25)}
+.burger i{display:block;width:1rem;height:1px;background:#fff}
+
+.hero-title-wrap{padding:1rem 1.5rem 0}
+@media (min-width:640px){.hero-title-wrap{padding:1rem 2.5rem 0}}
+.hero-title{font-size:7vw;font-weight:500;text-transform:uppercase;line-height:.85;letter-spacing:-.02em;white-space:nowrap}
+.hero-title .clip{padding-bottom:.1em}
+@media (max-width:640px){.hero-title{white-space:normal}.hero-title .clip{display:block;width:max-content}}
+
+.hero-bottom{margin-top:auto;padding:0 1.5rem 2rem;display:flex;flex-direction:column;gap:1.5rem}
+@media (min-width:640px){.hero-bottom{padding:0 2.5rem 2.5rem;flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.tagline{font-size:2.4rem;font-weight:500;text-transform:uppercase;line-height:.95;letter-spacing:-.02em;color:rgba(255,255,255,.85)}
+.hero-cluster{display:flex;align-items:flex-end;gap:1rem}
+.highlights{display:none;width:16rem;flex-direction:column;gap:.75rem}
+@media (min-width:768px){.highlights{display:flex}}
+.hl-stage{position:relative;min-height:5.1rem}
+.hl-card{display:flex;gap:.75rem;width:100%}
+.hl-card.out{position:absolute;inset:0}
+.hl-img{width:3.5rem;height:3.5rem;border-radius:.75rem;overflow:hidden;flex:none}
+.hl-img .ph span{display:none}
+.hl-text{display:flex;flex-direction:column;justify-content:center;gap:.15rem;min-width:0}
+.hl-brand{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.hl-title{font-size:.7rem;text-transform:uppercase;opacity:.8}
+.hl-cta{font-size:.65rem;text-decoration:underline;text-underline-offset:3px;text-align:left;margin-top:.15rem}
+.students{display:flex;gap:.75rem;align-items:stretch;width:100%;max-width:20rem}
+@media (min-width:640px){.students{max-width:15rem}}
+.students-l{display:flex;flex-direction:column;justify-content:space-between;gap:.6rem;flex:1}
+.students-num{font-size:1.875rem;font-weight:500;line-height:1}
+.avatars{display:flex}
+.avatars i{width:1.25rem;height:1.25rem;border-radius:var(--radius-pill);border:1px solid rgba(15,47,99,.4);display:block}
+.avatars i+i{margin-left:-.5rem}
+.students-cap{font-size:.65rem;opacity:.8}
+.students-img{width:4rem;aspect-ratio:3/4;border-radius:.75rem;overflow:hidden;flex:none;max-width:100%}
+.students-img .ph span{display:none}
+
+/* ---------- Trust ---------- */
+.trust{position:relative;isolation:isolate;overflow:hidden;background:var(--background);padding:4rem 1.5rem}
+@media (min-width:640px){.trust{padding:5rem 2.5rem}}
+.trust-top{position:relative;z-index:20;display:flex;flex-direction:column;gap:1.5rem}
+@media (min-width:640px){.trust-top{flex-direction:row;justify-content:space-between;align-items:flex-start}}
+.ratio{width:7rem;height:7rem;border-radius:var(--radius-pill);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.2rem}
+@media (min-width:640px){.ratio{width:8rem;height:8rem}}
+.ratio b{font-size:1.5rem;font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.ratio small{font-size:.6rem;color:var(--ink-soft);max-width:7em;line-height:1.3}
+.badge{max-width:28rem;display:flex;gap:1rem;border-radius:var(--radius-card);background:var(--surface);padding:1.25rem}
+@media (min-width:640px){.badge{gap:1.25rem;padding:1.5rem}}
+.chip{align-self:flex-start;border-radius:.75rem;background:var(--background);padding:.5rem 1rem;font-size:1.25rem;font-weight:500;line-height:1.4}
+.badge h3{font-size:1.125rem;line-height:1.3}
+.badge p{font-size:.75rem;color:var(--ink-soft);line-height:1.6;margin-top:.35rem}
+.ghost{position:relative;z-index:0;pointer-events:none;user-select:none;max-width:92rem;margin:3rem auto 0;font-size:7.4vw;font-weight:500;text-transform:uppercase;line-height:1.02;letter-spacing:-.02em}
+.ghost-row{display:flex;justify-content:space-between;gap:.3em}
+.gw{display:inline-block;color:var(--ghost);will-change:transform}
+.gw.ink{color:var(--ink)}
+.gw .clip{padding-bottom:.12em;margin-bottom:-.12em}
+.tutor-pos{position:relative;z-index:10;width:13rem;margin:2.5rem auto 0;max-width:100%}
+@media (min-width:640px){.tutor-pos{position:absolute;left:50%;top:50%;width:16rem;margin:0;transform:translate(-50%,-50%)}}
+.tutor-rot{transform:rotate(6deg)}
+.tutor-card{position:relative;aspect-ratio:3/4;border-radius:var(--radius-card);background:var(--brand);overflow:hidden;max-width:100%}
+.tutor-photo{position:absolute;inset:0}
+.cap{position:absolute;left:.75rem;right:.75rem;bottom:.75rem;border-radius:.75rem;background:rgba(15,47,99,.4);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:.5rem .75rem}
+.cap b{display:block;font-size:.875rem;font-weight:500}
+.cap small{display:block;font-size:.65rem;opacity:.8}
+.trust-controls{position:relative;z-index:20;display:flex;justify-content:space-between;align-items:center;margin-top:3rem}
+@media (min-width:640px){.trust-controls{margin-top:6rem}}
+
+/* ---------- Programmes ---------- */
+.programmes{background:var(--surface);padding:6rem 1.5rem;border-radius:var(--radius-card-lg) var(--radius-card-lg) 0 0}
+@media (min-width:640px){.programmes{padding:6rem 2.5rem}}
+.h-sec{font-size:3rem;line-height:.95;letter-spacing:-.02em;margin-top:1rem}
+.prog-list{margin-top:3.5rem}
+.prog-list li{border-top:1px solid var(--hairline)}
+.prog-list li:last-child{border-bottom:1px solid var(--hairline)}
+.prog-row{display:flex;align-items:center;gap:1.5rem;padding:1.75rem 0;width:100%;text-align:left}
+.prog-row:focus-visible{background:var(--background)}
+.prog-idx{width:2.5rem;flex:none;font-size:.875rem;font-weight:500;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.prog-main{flex:1;min-width:0}
+.prog-name{display:block;font-size:1.5rem;font-weight:500;letter-spacing:-.01em;line-height:1.2}
+@media (min-width:640px){.prog-name{font-size:1.875rem}}
+.prog-desc{display:block;font-size:.875rem;color:var(--ink-soft);margin-top:.25rem}
+.prog-arrow{width:2.75rem;height:2.75rem;flex:none;border-radius:var(--radius-pill);border:1px solid var(--hairline);display:grid;place-items:center}
+.prog-arrow svg{width:1.1rem;height:1.1rem;opacity:.55}
+
+/* ---------- Spaces ---------- */
+.spaces{position:relative;background:var(--background);border-radius:var(--radius-card-lg);margin-top:-2.5rem;padding:4rem 1.5rem 5rem}
+@media (min-width:640px){.spaces{padding:4rem 2.5rem 5rem}}
+.spaces-grid{display:grid;gap:2.5rem;align-items:end}
+@media (min-width:768px){.spaces-grid{grid-template-columns:1fr 1fr}}
+.spaces-intro{max-width:24rem}
+.space-icon{width:4rem;height:4rem;border-radius:var(--radius-card);overflow:hidden}
+.space-icon .ph span{display:none}
+.spaces-body{font-size:.875rem;color:var(--ink-soft);max-width:20rem;margin-top:1.5rem;line-height:1.6}
+.rooms{display:flex;align-items:flex-end;gap:1.25rem}
+.room{flex:1;min-width:0}
+.room:nth-child(2){margin-bottom:2rem}
+.room-tile{position:relative;aspect-ratio:3/4;border-radius:var(--radius-card);overflow:hidden;background:var(--surface);max-width:100%}
+.room-img{position:absolute;inset:0;will-change:transform}
+.room .cap{padding:.75rem 1rem}
+.room .cap small{opacity:.85}
+.room .cap.teal{background:rgba(11,110,151,.55)}
+
+/* ---------- Stats ---------- */
+.stats{background:var(--brand-deep);color:#fff;border-radius:var(--radius-card-lg);margin-top:.75rem;padding:5rem 1.5rem}
+@media (min-width:640px){.stats{padding:5rem 2.5rem}}
+.stats dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem;row-gap:3rem;margin-top:4rem}
+@media (min-width:1024px){.stats dl{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{border-top:1px solid rgba(255,255,255,.2);padding-top:1.25rem}
+.stat-val{display:block;font-size:3.75rem;font-weight:500;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+@media (min-width:640px){.stat-val{font-size:4.5rem}}
+.stat-label{display:block;font-size:.875rem;color:rgba(255,255,255,.65);margin-top:.75rem}
+.stats dd{margin:0}
+
+/* ---------- Events ---------- */
+.events{background:var(--surface);border-radius:var(--radius-card-lg);margin-top:.75rem;padding:5rem 1.5rem}
+@media (min-width:640px){.events{padding:6rem 2.5rem}}
+.sec-head{display:flex;flex-direction:column;gap:1.5rem}
+@media (min-width:640px){.sec-head{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.ev-grid{display:grid;gap:1.25rem;margin-top:3.5rem}
+@media (min-width:768px){.ev-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ev-card{height:100%;background:var(--surface-card);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column}
+.ev-img{aspect-ratio:16/10;max-width:100%}
+.ev-body{padding:1.5rem;display:flex;flex-direction:column;flex:1}
+.ev-date{align-self:flex-start;background:var(--accent-warm);color:var(--ink);font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;border-radius:var(--radius-pill);padding:.25rem .75rem}
+.ev-title{font-size:1.25rem;margin-top:1rem;line-height:1.25}
+.ev-sum{font-size:.875rem;color:var(--ink-soft);margin-top:.5rem;line-height:1.6;flex:1}
+.ev-more{font-size:.875rem;margin-top:1.25rem;text-decoration:underline;text-underline-offset:4px;align-self:flex-start}
+
+/* ---------- Testimonials ---------- */
+.testimonials{background:var(--background);padding:5rem 1.5rem}
+@media (min-width:640px){.testimonials{padding:6rem 2.5rem}}
+.t-grid{display:grid;gap:1.25rem;margin-top:3.5rem}
+@media (min-width:768px){.t-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.t-card{height:100%;display:flex;flex-direction:column;justify-content:space-between;border-radius:var(--radius-card);background:var(--surface);padding:1.75rem}
+.t-q{font-size:2.25rem;color:var(--brand);line-height:1;font-weight:500}
+.t-card blockquote{font-size:1.125rem;line-height:1.6;color:var(--ink);margin-top:1rem}
+.t-card figcaption{border-top:1px solid var(--hairline);padding-top:1rem;margin-top:1.5rem}
+.t-card figcaption b{display:block;font-weight:500}
+.t-card figcaption small{display:block;font-size:.875rem;color:var(--ink-soft)}
+.placeholder-note{font-size:.75rem;color:var(--ink-soft);margin-top:1.25rem}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--brand-deep);color:#fff;border-radius:var(--radius-card-lg);margin-top:.75rem;padding:3.5rem 1.5rem}
+@media (min-width:640px){.footer{padding:4rem 2.5rem}}
+.cta-band{border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:3.5rem;display:flex;flex-direction:column;gap:2rem}
+@media (min-width:640px){.cta-band{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.cta-big{font-size:3.75rem;font-weight:500;line-height:.92;letter-spacing:-.02em;margin-top:1rem}
+.cta-btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.f-cols{display:grid;gap:2.5rem;padding:3.5rem 0}
+@media (min-width:768px){.f-cols{grid-template-columns:1.4fr 1fr 1fr 1fr}}
+.f-brand{max-width:20rem}
+.f-brand .brand{font-size:1.125rem}
+.f-blurb{font-size:.875rem;color:rgba(255,255,255,.65);margin-top:1rem;line-height:1.6}
+.f-addr{font-style:normal;margin-top:1.5rem;color:rgba(255,255,255,.8);font-size:.875rem;display:flex;flex-direction:column;gap:.35rem}
+.f-addr .muted{color:rgba(255,255,255,.55)}
+.f-addr a:hover,.f-nav a:hover,.f-nav button:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.f-nav h4{font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.5)}
+.f-nav ul{margin-top:1rem;display:flex;flex-direction:column;gap:.75rem;font-size:.875rem;color:rgba(255,255,255,.8)}
+.f-nav button{text-align:left}
+.f-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:2rem;font-size:.875rem;color:rgba(255,255,255,.6);display:flex;flex-direction:column;gap:1.25rem}
+@media (min-width:640px){.f-bottom{flex-direction:row;justify-content:space-between;align-items:center}}
+.f-links{display:flex;flex-wrap:wrap;gap:1.25rem}
+.f-links a:hover{color:#fff}
+
+/* ---------- Floating WhatsApp ---------- */
+.wa-float{position:fixed;right:calc(1.25rem + env(safe-area-inset-right,0px));bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));z-index:60;width:3.5rem;height:3.5rem;border-radius:var(--radius-pill);background:var(--whatsapp);color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(15,47,99,.3);opacity:0;transform:scale(.6);pointer-events:none}
+.wa-float svg{width:1.6rem;height:1.6rem}
+.wa-float.hide{visibility:hidden}
+
+/* ---------- Modal ---------- */
+.modal{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-end;justify-content:center;padding:.75rem;pointer-events:none}
+@media (min-width:640px){.modal{align-items:center;padding:1.5rem}}
+.modal.open{pointer-events:auto}
+.modal-bd{position:absolute;inset:0;background:rgba(15,47,99,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0}
+.modal-panel{position:relative;width:100%;max-height:92svh;overflow-y:auto;border-radius:var(--radius-card-lg);background:var(--surface-card);padding:1.5rem;color:var(--ink);box-shadow:0 30px 80px rgba(15,47,99,.35);opacity:0}
+@media (min-width:640px){.modal-panel{padding:2rem;max-width:32rem}}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.modal-title{font-size:2.25rem;line-height:.95;letter-spacing:-.02em;margin-top:.75rem}
+@media (min-width:640px){.modal-title{font-size:3rem}}
+.x-btn{width:2.5rem;height:2.5rem;flex:none;border-radius:var(--radius-pill);background:var(--surface);display:grid;place-items:center;transition:background-color .2s}
+.x-btn:hover{background:var(--hairline)}
+.x-btn svg{width:1.1rem;height:1.1rem}
+.x-btn.dark{background:rgba(255,255,255,.15);color:#fff}
+.x-btn.dark:hover{background:rgba(255,255,255,.25)}
+.form{margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem}
+.field label{display:block;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.18em;color:var(--ink-soft);margin-bottom:.4rem}
+.field input,.field textarea,.field select{width:100%;border-radius:.75rem;border:1px solid var(--hairline);background:var(--background);padding:.75rem 1rem;font:inherit;font-size:.875rem;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.field textarea{resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--brand-light);box-shadow:0 0 0 3px rgba(87,144,230,.25)}
+.field .err{display:none;font-size:.75rem;color:#b42318;margin-top:.35rem}
+.field.invalid .err{display:block}
+.field.invalid input{border-color:#b42318}
+.submit{align-self:flex-start;margin-top:.25rem}
+.email-alt{font-size:.75rem;color:var(--ink-soft)}
+.email-alt a{text-decoration:underline;text-underline-offset:3px}
+.success{margin-top:2rem;border-radius:var(--radius-card);background:var(--surface);padding:1.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.check{width:3rem;height:3rem;border-radius:var(--radius-pill);background:var(--brand);color:#fff;display:grid;place-items:center}
+.check svg{width:1.4rem;height:1.4rem}
+.success h3{font-size:1.125rem}
+.success p{font-size:.875rem;color:var(--ink-soft);max-width:22rem}
+.success .row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.5rem}
+
+/* ---------- Menu overlay ---------- */
+.menu{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;pointer-events:none}
+.menu.open{pointer-events:auto}
+.menu-bd{position:absolute;inset:0;background:var(--brand-deep);opacity:0}
+.menu-panel{position:relative;height:100%;padding:.5rem;color:#fff;opacity:0}
+@media (min-width:640px){.menu-panel{padding:.75rem}}
+.menu-inner{height:100%;display:flex;flex-direction:column;padding:1.5rem}
+@media (min-width:640px){.menu-inner{padding:2rem 2.5rem 2.5rem}}
+.menu-top{display:flex;justify-content:space-between;align-items:center;font-size:.75rem}
+.menu-nav{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.5rem}
+.menu-nav a{display:block;font-size:3rem;font-weight:500;letter-spacing:-.02em;line-height:1.05;transition:color .2s;width:max-content}
+@media (min-width:640px){.menu-nav a{font-size:4.5rem}}
+.menu-nav a:hover{color:var(--brand-light)}
+.menu-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:2rem;display:flex;flex-direction:column;gap:1.25rem}
+@media (min-width:640px){.menu-bottom{flex-direction:row;justify-content:space-between;align-items:center}}
+.menu-bottom .btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.menu-social{display:flex;gap:1.25rem;font-size:.875rem;color:rgba(255,255,255,.7)}
+.menu-social a:hover{color:#fff}
+
+/* ---------- Loader ---------- */
+.loader{position:fixed;inset:0;z-index:200;background:var(--brand-deep);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:transform 850ms var(--ease-io-cubic)}
+.loader.exit{transform:translateY(-105%)}
+.loader .brand{font-size:1.5rem;opacity:0}
+.loader .mark{width:1.75rem;height:1.75rem}
+.track{width:10rem;height:1px;border-radius:var(--radius-pill);background:rgba(255,255,255,.2);overflow:hidden}
+.fill{height:100%;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform 1280ms var(--ease-io-cubic) 120ms}
+.fill.go{transform:scaleX(1)}
+
+@media (prefers-reduced-motion: reduce){
+  .clip>span,.fadewords .fw{transition-duration:1ms!important;transition-delay:0ms!important}
+  .loader{transition-duration:1ms}
+  .fill{transition-duration:150ms;transition-delay:0ms}
+}
+.mark-wrap{display:inline-flex}
+.logo-img{height:1.75rem;width:auto;display:block}
+.loader .logo-img{height:2.5rem}
+.schedule{background:var(--background);border-radius:var(--radius-card-lg);margin-top:.75rem;padding:5rem 1.5rem}
+@media (min-width:640px){.schedule{padding:6rem 2.5rem}}
+.sched-note{font-size:.875rem;color:var(--ink-soft);max-width:22rem}
+.sched-days{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:3rem}
+.sched-days button{border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:.6rem 1.2rem;font-size:.875rem;font-weight:500;transition:background-color .2s,color .2s,border-color .2s}
+.sched-days button:hover{border-color:var(--ink)}
+.sched-days button[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sched-wrap{margin-top:1.5rem;overflow-x:auto;border-radius:var(--radius-card);background:var(--surface)}
+.sched-table{width:100%;min-width:34rem;border-collapse:collapse;font-size:.875rem}
+.sched-table th{text-align:left;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.18em;color:var(--ink-soft);padding:1.1rem 1.5rem;border-bottom:1px solid var(--hairline)}
+.sched-table td{padding:1.1rem 1.5rem;border-bottom:1px solid var(--hairline);vertical-align:top}
+.sched-table tr:last-child td{border-bottom:0}
+.sched-table td:first-child{font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
+.lvl{display:inline-block;background:var(--background);border-radius:var(--radius-pill);padding:.2rem .7rem;font-size:.75rem;font-weight:500;white-space:nowrap}
+.sched-empty{color:var(--ink-soft)}
+@media (max-width:640px){
+  .sched-table{min-width:0}
+  .sched-table thead{display:none}
+  .sched-table tr{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.35rem .75rem;padding:1rem 1.25rem;border-bottom:1px solid var(--hairline)}
+  .sched-table tr:last-child{border-bottom:0}
+  .sched-table td{padding:0;border:0}
+  .sched-table td:nth-child(2){justify-self:start}
+  .sched-table td:nth-child(3){grid-column:1/-1;font-size:1rem;font-weight:500}
+  .sched-table td:nth-child(4){grid-column:1/-1;color:var(--ink-soft);font-size:.8rem}
+  .sched-table td.sched-empty{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="brand" id="loaderBrand"><span class="mark-wrap"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg></span><span data-brand>Lumen</span></div>
+  <div class="track"><div class="fill" id="loaderFill"></div></div>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-bg"><div class="hero-plate" id="heroPlate" data-slot="hero" data-alt="Students working on exercises with a tutor in a bright classroom" data-big="1" data-eager="1"></div></div>
+    <header class="site-header">
+      <nav class="hnav" aria-label="Primary">
+        <a href="#programmes" data-scroll>Programmes &amp; Tutors</a>
+        <a href="#schedule" data-scroll>Class Schedule</a>
+      </nav>
+      <div class="hcenter"><a href="#top" class="brand" data-scroll aria-label="Back to top"><span class="mark-wrap"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg></span><span data-brand>Lumen</span></a></div>
+      <div class="hright">
+        <button class="htext" data-open-modal>Free Trial Class</button>
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+      </div>
+    </header>
+    <div class="hero-title-wrap">
+      <h1 class="hero-title" id="hero-title"></h1>
+    </div>
+    <div class="hero-bottom">
+      <p class="tagline stack" id="tagline"></p>
+      <div class="hero-cluster">
+        <div class="highlights" id="highlights">
+          <div class="hl-stage glass" id="hlStage"></div>
+          <div class="dots light" id="hlDots" role="group" aria-label="Highlights"></div>
+        </div>
+        <article class="students glass" id="studentsCard">
+          <div class="students-l">
+            <span class="students-num">500+</span>
+            <span class="avatars" aria-hidden="true"><i style="background:#5790e6"></i><i style="background:#f2b632"></i><i style="background:#0b6e97"></i><i style="background:#ffffff"></i></span>
+            <span class="students-cap">Students enrolled</span>
+          </div>
+          <div class="students-img" data-slot="students" data-alt="Students smiling with their books"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust" id="tutors" aria-labelledby="trust-title">
+    <div class="trust-top">
+      <div class="ratio" id="ratio"><b>1:8</b><small>Max students per tutor</small></div>
+      <article class="badge" id="badgeCard">
+        <span class="chip">#01</span>
+        <div>
+          <h3>Trusted by parents</h3>
+          <p>From students catching up on the basics to those aiming for straight A's, parents choose us because the results show up in school reports.</p>
+        </div>
+      </article>
+    </div>
+    <h2 class="ghost" id="trust-title" aria-live="polite">
+      <span class="ghost-row"><span class="gw" data-gw="0"></span><span class="gw" data-gw="1"></span></span>
+      <span class="ghost-row"><span class="gw ink" data-gw="2"></span><span class="gw" data-gw="3"></span></span>
+    </h2>
+    <div class="tutor-pos"><div class="tutor-rot"><figure class="tutor-card" id="tutorCard">
+      <div class="tutor-photo" id="tutorPhoto"></div>
+      <figcaption class="cap"><b id="tutorName"></b><small id="tutorRole"></small></figcaption>
+    </figure></div></div>
+    <div class="trust-controls">
+      <button class="arrow-btn prev" id="tPrev" aria-label="Previous tutor"><span class="flip" style="display:grid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+      <div class="dots" id="tDots" role="group" aria-label="Tutors"></div>
+      <button class="arrow-btn solid" id="tNext" aria-label="Next tutor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES -->
+  <section class="programmes" id="programmes" aria-labelledby="programmes-title">
+    <span class="eyebrow">Our programmes</span>
+    <h2 class="h-sec stack" id="programmes-title" data-lines="Built for|every level"></h2>
+    <ul class="prog-list" id="progList"></ul>
+  </section>
+
+  <!-- SPACES -->
+  <section class="spaces" id="spaces" aria-labelledby="spaces-title">
+    <div class="spaces-grid">
+      <div class="spaces-intro">
+        <div class="space-icon" id="spaceIcon" data-slot="space-icon" data-alt="Books and stationery on a desk"></div>
+        <h2 class="h-sec stack" id="spaces-title" data-lines="Tour Our|Learning|Spaces" style="margin-top:1.5rem"></h2>
+        <p class="spaces-body fadewords" id="spacesBody"></p>
+      </div>
+      <div class="rooms">
+        <figure class="room">
+          <div class="room-tile"><div class="room-img" data-slot="room-1" data-alt="Small-group classroom with a whiteboard"></div>
+            <figcaption class="cap"><b>Focus Classroom</b><small>Small-group lessons with a whiteboard and one tutor per class.</small></figcaption></div>
+        </figure>
+        <figure class="room">
+          <div class="room-tile"><div class="room-img" data-slot="room-2" data-v="v2" data-alt="Quiet study corner with desks"></div>
+            <figcaption class="cap teal"><b>Study Corner</b><small>A quiet space for homework help and exam revision.</small></figcaption></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats" aria-labelledby="stats-title">
+    <span class="eyebrow light">By the numbers</span>
+    <h2 class="h-sec stack" id="stats-title" data-lines="Results that|speak for us"></h2>
+    <dl id="statList"></dl>
+  </section>
+
+
+  <!-- SCHEDULE -->
+  <section class="schedule" id="schedule" aria-labelledby="schedule-title">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Class schedule</span>
+        <h2 class="h-sec stack" id="schedule-title" data-lines="This term's|timetable"></h2>
+      </div>
+      <p class="sched-note" id="schedNote"></p>
+    </div>
+    <div class="sched-days" id="schedDays" role="tablist" aria-label="Day"></div>
+    <div class="sched-wrap"><table class="sched-table">
+      <thead><tr><th scope="col">Time</th><th scope="col">Level</th><th scope="col">Subject</th><th scope="col">Tutor</th></tr></thead>
+      <tbody id="schedBody"></tbody>
+    </table></div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events" id="events" aria-labelledby="events-title">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Latest news &amp; events</span>
+        <h2 class="h-sec stack" id="events-title" data-lines="What's|happening"></h2>
+      </div>
+      <a class="pill outline" href="#events" data-scroll>All updates <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <ul class="ev-grid" id="evList"></ul>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
+    <span class="eyebrow">What parents say</span>
+    <h2 class="h-sec stack" id="testimonials-title" data-lines="Loved by|our families"></h2>
+    <ul class="t-grid" id="tList"></ul>
+    <p class="placeholder-note">Placeholder cards. Real parent quotes go here before launch.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="cta-band">
+      <div>
+        <span class="eyebrow light">Get started</span>
+        <p class="cta-big stack" id="ctaBig" data-lines="Ready to|start learning?"></p>
+      </div>
+      <div class="cta-btns" id="ctaBtns">
+        <a class="pill wa" data-wa target="_blank" rel="noopener"></a>
+        <button class="pill light" data-open-modal>Free Trial Class <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="f-cols">
+      <div class="f-brand">
+        <span class="brand"><span class="mark-wrap"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg></span><span data-brand>Lumen</span></span>
+        <p class="f-blurb">A tuition centre for primary and secondary students, where small classes and caring tutors build real confidence.</p>
+        <address class="f-addr">
+          <a data-email></a>
+          <a data-wa-plain target="_blank" rel="noopener"><span data-phone></span> (WhatsApp)</a>
+          <span class="muted" data-address></span>
+          <span class="muted" data-hours></span>
+        </address>
+      </div>
+      <nav class="f-nav" aria-label="Programmes"><h4>Programmes</h4><ul>
+        <li><a href="#programmes" data-scroll>Primary</a></li>
+        <li><a href="#programmes" data-scroll>Lower Secondary</a></li>
+        <li><a href="#programmes" data-scroll>SPM</a></li>
+        <li><a href="#programmes" data-scroll>One-to-One</a></li>
+      </ul></nav>
+      <nav class="f-nav" aria-label="Centre"><h4>Centre</h4><ul>
+        <li><a href="#tutors" data-scroll>Our Tutors</a></li>
+        <li><a href="#spaces" data-scroll>Learning Spaces</a></li>
+        <li><a href="#events" data-scroll>News &amp; Events</a></li>
+        <li><a href="#testimonials" data-scroll>Reviews</a></li>
+      </ul></nav>
+      <nav class="f-nav" aria-label="Contact"><h4>Contact</h4><ul>
+        <li><a data-wa-plain target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a data-email-link>Email</a></li>
+        <li><button data-open-modal>Free Trial Class</button></li>
+        <li><a href="#contact" data-scroll>Find Us</a></li>
+      </ul></nav>
+    </div>
+    <div class="f-bottom">
+      <span>© <span data-year></span> <span data-fullname></span>. All rights reserved.</span>
+      <nav class="f-links" aria-label="Social"><a data-social="facebook" target="_blank" rel="noopener">Facebook</a><a data-social="instagram" target="_blank" rel="noopener">Instagram</a><a data-social="tiktok" target="_blank" rel="noopener">TikTok</a></nav>
+      <nav class="f-links" aria-label="Legal"><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
+    </div>
+  </footer>
+</main>
+
+<a class="wa-float" id="waFloat" data-wa-plain target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"></a>
+
+<!-- MENU -->
+<div class="menu" id="menu" aria-hidden="true" inert>
+  <div class="menu-bd" id="menuBd"></div>
+  <div class="menu-panel" id="menuPanel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="menu-inner">
+      <div class="menu-top">
+        <span class="brand"><span class="mark-wrap"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg></span><span data-brand>Lumen</span></span>
+        <button class="x-btn dark" id="menuClose" aria-label="Close menu"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <nav class="menu-nav" id="menuNav" aria-label="Menu">
+        <a href="#programmes">Programmes</a>
+        <a href="#spaces">Spaces</a>
+        <a href="#events">Events</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="menu-bottom">
+        <div class="btns">
+          <a class="pill wa" data-wa target="_blank" rel="noopener"></a>
+          <button class="pill light" id="menuTrial">Free Trial Class <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <nav class="menu-social" aria-label="Social"><a data-social="facebook" target="_blank" rel="noopener">Facebook</a><a data-social="instagram" target="_blank" rel="noopener">Instagram</a><a data-social="tiktok" target="_blank" rel="noopener">TikTok</a></nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal" aria-hidden="true" inert>
+  <div class="modal-bd" id="modalBd"></div>
+  <div class="modal-panel" id="modalPanel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head">
+      <div>
+        <span class="eyebrow">Free trial class</span>
+        <h2 class="modal-title stack" id="modal-title" data-lines="Come and|try a class"></h2>
+      </div>
+      <button class="x-btn" id="modalClose" aria-label="Close"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <form class="form" id="form" novalidate>
+      <div class="field" id="f-name"><label for="in-name">Parent's name</label><input id="in-name" name="name" type="text" placeholder="Puan Aishah" autocomplete="name"><span class="err">Please enter your name.</span></div>
+      <div class="field" id="f-phone"><label for="in-phone">WhatsApp number</label><input id="in-phone" name="phone" type="tel" placeholder="012-345 6789" autocomplete="tel"><span class="err">Please enter a WhatsApp number we can reply to.</span></div>
+      <div class="field"><label for="in-level">Student's level</label>
+        <select id="in-level" name="level">
+          <option value="Std 1–3">Std 1–3</option>
+          <option value="Std 4–6">Std 4–6</option>
+          <option value="Form 1–3">Form 1–3</option>
+          <option value="Form 4–5 (SPM)">Form 4–5 (SPM)</option>
+        </select></div>
+      <div class="field"><label for="in-msg">Subjects / message</label><textarea id="in-msg" name="msg" rows="3" placeholder="Maths and Science, weekday evenings if possible…"></textarea></div>
+      <button class="pill wa submit" type="submit">Send via WhatsApp</button>
+      <p class="email-alt">Prefer email? <a data-email></a></p>
+    </form>
+    <div class="success" id="success" hidden>
+      <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+      <h3>Message ready</h3>
+      <p id="successText"></p>
+      <div class="row">
+        <a class="pill wa" id="successWa" target="_blank" rel="noopener">Open WhatsApp</a>
+        <button class="pill solid" id="successDone">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
